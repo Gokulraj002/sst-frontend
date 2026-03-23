@@ -3,9 +3,17 @@
   publish = "dist"
 
 [build.environment]
-  VITE_API_BASE_URL = "https://sst-new.onrender.com"
+  VITE_API_BASE_URL = ""
   VITE_APP_NAME = "SST ERP"
 
+# Proxy API requests to Render backend (must be BEFORE the SPA catch-all)
+[[redirects]]
+  from = "/api/*"
+  to = "https://sst-new.onrender.com/api/:splat"
+  status = 200
+  force = true
+
+# SPA catch-all for client-side routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
